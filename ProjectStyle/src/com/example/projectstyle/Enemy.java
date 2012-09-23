@@ -1,7 +1,5 @@
 package com.example.projectstyle;
 
-import com.example.projectstyle.AIActionManager.AIActionType;
-
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;

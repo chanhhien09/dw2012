@@ -1,8 +1,5 @@
 package com.example.projectstyle;
 
-import android.view.Display;
-import android.view.WindowManager;
-
 public class HorizontalAction implements EnemyAIAction {
 	private final int MAX_DISTANCE = 400;
 	private final int MIN_DISTANCE = 0;

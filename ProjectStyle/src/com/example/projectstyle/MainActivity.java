@@ -37,6 +37,7 @@ import android.view.WindowManager;
 public class MainActivity extends Activity implements OnClickListener {
 	private SensorManager sensorManager;
 	private Accelerometer accelerometer;
+	private MainThread thread;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -53,29 +54,36 @@ public class MainActivity extends Activity implements OnClickListener {
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		Context ctx = this.getApplicationContext();
 		CustomCameraView cv = new CustomCameraView(ctx);
-		LayoutParams layoutParams = new LayoutParams(
-				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		MainGamePanel gameView = new MainGamePanel(ctx);
+		LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT,
+				LayoutParams.WRAP_CONTENT);
 		addContentView(cv, layoutParams);
-		addContentView(new MainGamePanel(ctx),
-				layoutParams);
-		
+		addContentView(gameView, layoutParams);
+
+		thread = new MainThread(gameView);
+		thread.setRunning(true);
+		thread.start();
+
 		sensorManager = (SensorManager) getSystemService(ctx.SENSOR_SERVICE);
 		accelerometer = new Accelerometer();
-		accelerometer.sensor = sensorManager.getDefaultSensor(SensorManager.SENSOR_ACCELEROMETER);
-		
-		sensorManager.registerListener(accelerometer, accelerometer.sensor, SensorManager.SENSOR_DELAY_NORMAL);
+		accelerometer.sensor = sensorManager
+				.getDefaultSensor(SensorManager.SENSOR_ACCELEROMETER);
+
+		sensorManager.registerListener(accelerometer, accelerometer.sensor,
+				SensorManager.SENSOR_DELAY_NORMAL);
 	}
-	
+
 	@Override
 	public void onPause() {
 		super.onPause();
 		sensorManager.unregisterListener(accelerometer);
 	}
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();
-		sensorManager.registerListener(accelerometer, accelerometer.sensor, SensorManager.SENSOR_DELAY_NORMAL);
+		sensorManager.registerListener(accelerometer, accelerometer.sensor,
+				SensorManager.SENSOR_DELAY_NORMAL);
 	}
 
 	public void onClick(View v) {
@@ -89,6 +97,21 @@ public class MainActivity extends Activity implements OnClickListener {
 			break;
 		}
 
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		boolean retry = true;
+		while (retry) {
+			try {
+				thread.setRunning(false);
+				thread.join();
+				retry = false;
+			} catch (InterruptedException e) {
+				// try again shutting down the thread
+			}
+		}
 	}
 
 	@Override
