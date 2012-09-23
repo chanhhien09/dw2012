@@ -1,12 +1,10 @@
 package com.example.projectstyle;
 
-import android.view.Display;
-import android.view.WindowManager;
-
 public class HorizontalAction implements AIAction {
 	private final int MAX_DISTANCE = 400;
 	private final int MIN_DISTANCE = 0;
-	private int speed = 10;
+	private final float NORMAL_SPEED = .01f;
+	private float speed = NORMAL_SPEED;
 	
 	private Enemy enemy;
 	public HorizontalAction(Enemy e)
@@ -19,9 +17,9 @@ public class HorizontalAction implements AIAction {
 
 		enemy.x = enemy.x + speed;
 		if (enemy.x > MAX_DISTANCE)
-			speed = -10;
+			speed = -NORMAL_SPEED;
 		else if (enemy.x < MIN_DISTANCE)
-			speed = 10;
+			speed = NORMAL_SPEED;
 	}
 
 }

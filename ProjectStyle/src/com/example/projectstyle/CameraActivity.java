@@ -47,7 +47,7 @@ public class CameraActivity extends Activity implements OnClickListener {
 			//if (resultCode == Activity.RESULT_OK) {
 				Bitmap photo = (Bitmap) data.getExtras().get("data");
 				Bitmap copyPhoto = photo.copy(photo.getConfig(), true);
-				int[][] pixelColors = new int[photo.getWidth()][photo.getHeight()];
+				//int[][] pixelColors = new int[photo.getWidth()][photo.getHeight()];
 				for (int i = 0; i < copyPhoto.getWidth(); i++)
 					for (int j = 0; j < copyPhoto.getHeight(); j++)
 					{	

@@ -2,8 +2,6 @@ package com.example.projectstyle;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.util.Log;
-//import com.qualcomm.QCAR.QCAR;
 
 public class ImageTarget {
 	public ImageTarget(Bitmap photo)
