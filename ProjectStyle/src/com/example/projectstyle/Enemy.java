@@ -1,25 +1,30 @@
 package com.example.projectstyle;
 
+import com.example.projectstyle.AIActionManager.AIActionType;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 
 public class Enemy {
 	private Bitmap enemyBitmap;
-	private int x;
-	private int y;
+	private EnemyAIAction aiAction;
+	public int x;
+	public int y;
 	
-	public Enemy(Bitmap bitmap, int x, int y)
+	public Enemy(Bitmap bitmap, Point startingPoint, AIActionManager.AIActionType type)
 	{
 		enemyBitmap = bitmap;
-		this.x = x;
-		this.y = y;
+		aiAction = AIActionManager.LoadAIActionFromType(this, type);
+		this.x = startingPoint.x;
+		this.y = startingPoint.y;
 	}
-	
+
 	public void OnUpdate()
 	{
-		//DO NOthing for now
+		aiAction.doAction();
 	}
 	
 	public void OnDraw(Canvas canvas)
@@ -29,6 +34,4 @@ public class Enemy {
         paint.setColor(Color.BLACK);
 		canvas.drawBitmap(enemyBitmap, x, y, paint);
 	}
-	
-
 }
