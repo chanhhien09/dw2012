@@ -1,19 +1,21 @@
 package com.example.projectstyle;
 
-import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Point;
+import android.content.Context;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
 
 public class MainGamePanel extends View {
-	private MainThread thread;
+	//private MainThread thread;
 	private Enemy droid;
 	
 	public MainGamePanel(Context context){
 		super(context);
 		BitmapLoadHelper bitmapHelper = new BitmapLoadHelper(context);	
-		droid = new Enemy(bitmapHelper.getEnemyTexture(), 50, 50);
+		droid = new Enemy(bitmapHelper.getEnemyTexture(), new Point(50, 50), AIActionManager.AIActionType.HORIZONTAL);
 		setFocusable(true);
 	}
 	
@@ -51,12 +53,13 @@ public class MainGamePanel extends View {
 	}
 	
 	public void update() {
-		//TO DO
+		droid.OnUpdate();
 	}
 	
 	public void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);
+		canvas.drawColor(Color.BLACK);
 		droid.OnDraw(canvas);
 	}
 	
