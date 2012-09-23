@@ -1,5 +1,5 @@
 package com.example.projectstyle;
 
-public interface EnemyAIAction {
+public interface AIAction {
 	public void doAction();
 }

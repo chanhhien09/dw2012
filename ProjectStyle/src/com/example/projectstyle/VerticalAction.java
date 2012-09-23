@@ -1,6 +1,6 @@
 package com.example.projectstyle;
 
-public class VerticalAction implements EnemyAIAction {
+public class VerticalAction implements AIAction {
 	private final int MAX_DISTANCE = 700;
 	private final int MIN_DISTANCE = 0;
 	private int speed = 10;

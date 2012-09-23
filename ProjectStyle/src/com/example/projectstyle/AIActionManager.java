@@ -5,7 +5,8 @@ public class AIActionManager {
 	{
 		RANDOM,
 		HORIZONTAL,
-		VERTICAL
+		VERTICAL,
+		BULLET
 	}
 	
 	public AIActionManager()
@@ -13,16 +14,18 @@ public class AIActionManager {
 		
 	}
 	
-	public static EnemyAIAction LoadAIActionFromType(Enemy enemy, AIActionType type)
+	public static AIAction LoadAIActionFromType(Animation animation, AIActionType type)
 	{
 		switch (type)
 		{
 		case RANDOM:
-			return new RandomAction(enemy);
+			return new RandomAction((Enemy) animation);
 		case HORIZONTAL:
-			return new HorizontalAction(enemy);
+			return new HorizontalAction((Enemy) animation);
 		case VERTICAL:
-			return new VerticalAction(enemy);
+			return new VerticalAction((Enemy) animation);
+		case BULLET:
+			return new BulletAction((Bullet) animation);
 		default:
 			return null;
 		}

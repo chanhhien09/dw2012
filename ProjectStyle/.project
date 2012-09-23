@@ -30,4 +30,11 @@
 		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>res/drawable-ldpi/droid.png</name>
+			<type>1</type>
+			<location>D:/ANDROID/ProjectMaze/res/drawable-ldpi/droid.png</location>
+		</link>
+	</linkedResources>
 </projectDescription>

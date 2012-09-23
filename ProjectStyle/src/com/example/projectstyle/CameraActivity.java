@@ -9,11 +9,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.view.Display;
 import android.widget.Button;
 import android.widget.ImageView;
 
+
 public class CameraActivity extends Activity implements OnClickListener {
 	private static final int CAMERA_REQUEST = 1888;
+	 
 	private ImageView imageView;
 
 	@Override
@@ -22,6 +25,7 @@ public class CameraActivity extends Activity implements OnClickListener {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(new MainGamePanel(this));
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 	}
 
 	public void onClick(View v) {

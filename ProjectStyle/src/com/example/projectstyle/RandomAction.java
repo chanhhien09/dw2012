@@ -1,6 +1,6 @@
 package com.example.projectstyle;
 
-public class RandomAction implements EnemyAIAction {
+public class RandomAction implements AIAction {
 	private final int MAX_HORIZONTAL_DISTANCE = 400;
 	private final int MAX_VERTICAL_DISTANCE = 800;
 	private final int MIN_DISTANCE = 0;

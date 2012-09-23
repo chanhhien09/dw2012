@@ -3,7 +3,7 @@ package com.example.projectstyle;
 import android.view.Display;
 import android.view.WindowManager;
 
-public class HorizontalAction implements EnemyAIAction {
+public class HorizontalAction implements AIAction {
 	private final int MAX_DISTANCE = 400;
 	private final int MIN_DISTANCE = 0;
 	private int speed = 10;
