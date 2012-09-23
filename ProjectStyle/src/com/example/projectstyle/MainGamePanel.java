@@ -1,6 +1,10 @@
 package com.example.projectstyle;
 
+import com.example.projectstyle.AIActionManager.AIActionType;
+
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Point;
 import android.view.SurfaceView;
 import android.content.Context;
 import android.view.SurfaceHolder;
@@ -14,7 +18,7 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 		super(context);
 		getHolder().addCallback(this);
 		BitmapLoadHelper bitmapHelper = new BitmapLoadHelper(context);	
-		droid = new Enemy(bitmapHelper.getEnemyTexture(), 50, 50);
+		droid = new Enemy(bitmapHelper.getEnemyTexture(), new Point(50, 50), AIActionManager.AIActionType.HORIZONTAL);
 		setFocusable(true);
 	}
 	
@@ -52,11 +56,12 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
 	}
 	
 	public void update() {
-		//TO DO
+		droid.OnUpdate();
 	}
 	
 	protected void render(Canvas canvas)
 	{
+		canvas.drawColor(Color.BLACK);
 		droid.OnDraw(canvas);
 	}
 	
